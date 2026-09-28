@@ -5,6 +5,7 @@ import {
   searchWithProviders,
   verifyEntitlementBearer,
 } from './_web-providers.js';
+import { joinWaitlist } from './_waitlist.js';
 
 async function readJson(req) {
   const chunks = [];
@@ -13,8 +14,9 @@ async function readJson(req) {
   return body ? JSON.parse(body) : {};
 }
 
-// One function serves both web ops (Hobby plan caps the project at 12
-// functions); vercel.json rewrites /api/web-search and /api/web-read here.
+// One function serves the web ops and Manu's waitlist (Hobby plan caps the project
+// at 12 functions); vercel.json rewrites /api/web-search, /api/web-read and
+// /api/waitlist here.
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -23,6 +25,8 @@ export default async function handler(req, res) {
 
   try {
     const op = new URL(req.url, 'http://localhost').searchParams.get('op');
+    // Manu's waitlist is public: no entitlement, so it is answered before the check below.
+    if (op === 'waitlist') return joinWaitlist(req, res);
     if (op !== 'search' && op !== 'read') return res.status(404).json({ error: 'Unknown web op' });
 
     const identity = verifyEntitlementBearer(req.headers.authorization);

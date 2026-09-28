@@ -26,6 +26,10 @@
   ],
   "rewrites": [
     {
+      "source": "/api/waitlist",
+      "destination": "/api/web?op=waitlist"
+    },
+    {
       "source": "/downloads/:artifact",
       "destination": "/api/downloads/:artifact"
     },
@@ -51,6 +55,9 @@
     }
   ],
   "crons": [
-    { "path": "/api/cron-managed-keys", "schedule": "0 2 * * *" }
+    {
+      "path": "/api/cron-managed-keys",
+      "schedule": "0 2 * * *"
+    }
   ]
 }

@@ -15,12 +15,8 @@ async function readJson(req) {
   return body ? JSON.parse(body) : {};
 }
 
-export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+// Served by api/web.js (?op=waitlist): the Hobby plan caps the project at 12 functions.
+export async function joinWaitlist(req, res) {
   let body;
   try {
     body = await readJson(req);
