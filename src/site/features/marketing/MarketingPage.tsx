@@ -8,7 +8,7 @@ import { PaperGround } from '@/site/components/molecules/PaperGround';
 import { ProductTour } from '@/site/components/molecules/ProductTour';
 import { SiteFooter } from '@/site/components/organisms/SiteFooter';
 import { SiteHeader } from '@/site/components/organisms/SiteHeader';
-import { APP_CTA, APP_CTA_FIRST, APP_URL } from '@/site/config/site';
+import { WaitlistButton } from '@/site/components/molecules/Waitlist';
 import { useHashScroll } from '@/site/hooks/useHashScroll';
 
 /** The six labels on the cause list, in the words the case page uses. */
@@ -90,13 +90,13 @@ export function MarketingPage() {
       <main>
         <section className="hero">
           <img
-            className="hero__painting hero__painting--world"
-            src="/art/manu-court-garden.webp"
-            srcSet="/art/manu-court-garden-960.webp 960w, /art/manu-court-garden.webp 1672w"
+            className="hero__painting hero__painting--terrace"
+            src="/art/manu-terrace.webp"
+            srcSet="/art/manu-terrace-960.webp 960w, /art/manu-terrace.webp 1774w"
             sizes="100vw"
-            alt="Advocates in black gowns talking over case files under a banyan tree, with the Supreme Court of India in the distance, in ink and watercolour"
-            width="1672"
-            height="941"
+            alt="A marble terrace looking over gardens and water to the Supreme Court of India, a glowing diagram set in the terrace floor, in ink and watercolour"
+            width="1774"
+            height="887"
             fetchPriority="high"
           />
           <div className="hero__wash" />
@@ -105,14 +105,8 @@ export function MarketingPage() {
             <h1>
               The case diary <em>that reads the court for you.</em>
             </h1>
-            <p>
-              Add a case by its CNR. Every morning Manu reads the court, notices what changed, reads each new order,
-              and tells you what you have to do and by when, with the words it came from.
-            </p>
             <div className="hero__actions">
-              <ButtonLink href={APP_URL} tone="ink" arrow={false}>
-                {APP_CTA_FIRST}
-              </ButtonLink>
+              <WaitlistButton tone="ink" arrow={false} />
               <ButtonLink href="/#how-it-works" tone="outline" arrow>
                 See how it works
               </ButtonLink>
@@ -360,9 +354,7 @@ export function MarketingPage() {
               <span><CalendarClock size={15} aria-hidden="true" /> Tomorrow morning, the diary is already read.</span>
               <span><CheckCircle2 size={15} aria-hidden="true" /> Every line with its source.</span>
             </p>
-            <ButtonLink href={APP_URL} tone="paper">
-              {APP_CTA}
-            </ButtonLink>
+            <WaitlistButton tone="paper" />
           </div>
         </section>
       </main>

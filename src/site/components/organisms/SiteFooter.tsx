@@ -1,6 +1,7 @@
 import { Link } from 'react-router';
 
-import { APP_CTA, APP_URL, COMPANY, CONTACT_EMAIL } from '@/site/config/site';
+import { openWaitlist } from '@/site/components/molecules/Waitlist';
+import { COMPANY, CONTACT_EMAIL } from '@/site/config/site';
 
 /**
  * Tura's footer: short link columns on a pale blue card, and the wordmark
@@ -12,12 +13,15 @@ export function SiteFooter() {
       <footer className="site-footer">
         <div className="site-footer__top">
           <div className="site-footer__wordmark" aria-hidden="true">manu</div>
+          <p className="site-footer__legal">
+            © {new Date().getFullYear()} {COMPANY}. Manu prepares; people act. Nothing on this site is legal advice.
+          </p>
           <div className="site-footer__nav">
             <p>Product</p>
             <a href="/#product">The diary</a>
             <a href="/#how-it-works">How it works</a>
             <a href="/#screens">Screens</a>
-            <a href={APP_URL}>{APP_CTA}</a>
+            <button type="button" className="site-footer__link" onClick={openWaitlist}>Join the waitlist</button>
           </div>
           <div className="site-footer__nav">
             <p>Trust</p>
@@ -34,9 +38,6 @@ export function SiteFooter() {
         </div>
         <div className="site-footer__bottom" />
       </footer>
-      <p className="site-footer__legal">
-        © {new Date().getFullYear()} {COMPANY}. Manu prepares; people act. Nothing on this site is legal advice.
-      </p>
     </>
   );
 }

@@ -27,8 +27,8 @@ const AccountApp = lazy(() => import('@/account/AccountApp').then((module) => ({
 const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '[::1]']);
 
 const TITLES: Record<string, string> = {
-  '/': 'Manu · The case diary that reads the court for you',
-  '/about': 'About · Manu, from Sankhya AI Labs',
+  '/': 'Manu – Case diary for Indian courts',
+  '/about': 'About Manu – Sankhya AI Labs',
 };
 
 function isAccountPath(pathname: string) {

@@ -3,29 +3,31 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
 
 import { Brand } from '@/site/components/atoms/Brand';
-import { APP_CTA, APP_URL } from '@/site/config/site';
+import { openWaitlist, WaitlistDialog } from '@/site/components/molecules/Waitlist';
 
-/** The home page's sections, then About; the diary itself is the pill on the end. */
-const SECTIONS = [
-  ['Product', '/#product'],
-  ['How it works', '/#how-it-works'],
-  ['Liberty', '/#liberty'],
-  ['Questions', '/#questions'],
+/** Two pages, and the waitlist as the pill on the end. */
+const PAGES = [
+  ['Home', '/'],
+  ['About', '/about'],
 ] as const;
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
-  const onAbout = pathname === '/about';
 
   return (
     <header className="site-header">
       <nav className="site-nav" aria-label="Main navigation">
         <Brand />
         <div className="site-nav__links">
-          {SECTIONS.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
-          <Link to="/about" aria-current={onAbout ? 'page' : undefined}>About</Link>
-          <a className="site-nav__login" href={APP_URL}>{APP_CTA}</a>
+          {PAGES.map(([label, to]) => (
+            <Link key={to} to={to} aria-current={pathname === to ? 'page' : undefined}>
+              {label}
+            </Link>
+          ))}
+          <button type="button" className="site-nav__login" onClick={openWaitlist}>
+            Join waitlist
+          </button>
         </div>
         <button className="site-nav__toggle" type="button" aria-expanded={open} aria-label={open ? 'Close menu' : 'Open menu'} onClick={() => setOpen((value) => !value)}>
           {open ? <X size={19} /> : <Menu size={19} />}
@@ -33,11 +35,23 @@ export function SiteHeader() {
       </nav>
       {open ? (
         <div className="mobile-menu">
-          {SECTIONS.map(([label, href]) => <a href={href} key={href} onClick={() => setOpen(false)}>{label}</a>)}
-          <Link to="/about" aria-current={onAbout ? 'page' : undefined} onClick={() => setOpen(false)}>About</Link>
-          <a href={APP_URL}>{APP_CTA} <span>↗</span></a>
+          {PAGES.map(([label, to]) => (
+            <Link key={to} to={to} aria-current={pathname === to ? 'page' : undefined} onClick={() => setOpen(false)}>
+              {label}
+            </Link>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              openWaitlist();
+            }}
+          >
+            Join waitlist <span>↗</span>
+          </button>
         </div>
       ) : null}
+      <WaitlistDialog />
     </header>
   );
 }

@@ -1,16 +1,16 @@
 import { Link } from 'react-router';
 
 import { cn } from '@/site/lib/cn';
-import { ManuMark } from '@/site/components/atoms/ManuMark';
 
 type BrandProps = { inverse?: boolean; className?: string };
 
-/** Tura's lockup, with Manu's mark and name: mark, then the word in Baloo 2. */
+/** Sankhya's mark, the product's name, and whose it is: Manu | Sankhya AI Labs. */
 export function Brand({ inverse = false, className }: BrandProps) {
   return (
-    <Link className={cn('brand', inverse && 'brand--inverse', className)} to="/" aria-label="Manu home">
-      <ManuMark className="brand__mark" />
-      <strong>manu</strong>
+    <Link className={cn('brand', inverse && 'brand--inverse', className)} to="/" aria-label="Manu by Sankhya AI Labs, home">
+      <img className="brand__mark" src="/brand/sankhya-mark.png" alt="" width="142" height="142" />
+      <strong>Manu</strong>
+      <span className="brand__by">Sankhya AI Labs</span>
     </Link>
   );
 }

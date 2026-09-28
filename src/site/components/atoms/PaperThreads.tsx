@@ -32,8 +32,8 @@ const WIDTH = 1600;
 const HEIGHT = 900;
 
 const INKS: Record<Tone, { threads: string[]; wash: string[]; halo: number }> = {
-  paper: { threads: ['#8db8d5', '#a9b9c2', '#e2ae72', '#8db8d5', '#c9b99c'], wash: ['#b9d4e3', '#f0cfa4'], halo: 0.16 },
-  navy: { threads: ['#9cc6dd', '#6f93ab', '#df9d53', '#b7d6e2', '#88a3b4'], wash: ['#356f96', '#945135'], halo: 0.22 },
+  paper: { threads: ['#eca66f', '#d9b99a', '#e2ae72', '#f3c9a2', '#c9b99c'], wash: ['#f6d2b3', '#f0cfa4'], halo: 0.16 },
+  navy: { threads: ['#f3c9a2', '#c99a74', '#df9d53', '#f6d2b3', '#b08f76'], wash: ['#c8692f', '#945135'], halo: 0.22 },
 };
 
 function seededRandom(seed: number) {

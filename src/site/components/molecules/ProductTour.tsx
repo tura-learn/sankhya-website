@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
-import { Bell, CalendarDays, Check, FileText, FolderOpen, Quote, Scale, type LucideIcon } from 'lucide-react';
+import { Bell, CalendarDays, Check, FolderOpen, Scale, type LucideIcon } from 'lucide-react';
 import { useLenis } from 'lenis/react';
 
 /**
- * Six real screens from the demo court, captioned by what is on them.
+ * Four real screens from the demo court, captioned by what is on them.
  *
  * The caption's only job is to say what the reader is looking at. The three
  * lines under each one restate the description or name something printed on
@@ -11,70 +11,48 @@ import { useLenis } from 'lenis/react';
  */
 const PRODUCT_SCREENS = [
   {
-    id: 'changes',
-    label: 'What changed',
-    icon: Bell,
-    tone: 'terracotta',
-    title: 'What moved overnight, and where it came from.',
-    description: 'New orders, moved dates, directions found and status changes, newest first, each with the order or record it was read from.',
-    details: ['New orders and moved dates', 'Directions found in each order', 'Every change with its source'],
-    image: '/art/screens/manu-changes.webp',
-    alt: 'Manu’s What changed screen listing a new order, a direction found and a moved date for State v. Aamir Khan',
-  },
-  {
     id: 'case',
     label: 'The case',
     icon: FolderOpen,
     tone: 'blue',
-    title: 'The next hearing first, everything else one click away.',
-    description: 'The next date and what it is for, the last order, and what somebody has to do by when. Ask the case anything underneath.',
-    details: ['The next hearing and its purpose', 'The last order and what it asks', 'Ask the case underneath'],
+    title: 'Where it stands, and what comes next.',
+    description: 'The stage the case has reached, the next hearing and what it is for, the last order in the court’s words, and what somebody has to do by when. Every line opens the order it came from.',
+    details: ['The stage track, from FIR to judgment', 'The next hearing and the last order', 'Every line opens its source'],
     image: '/art/screens/manu-case.webp',
-    alt: 'The case page for State v. Aamir Khan showing the next hearing on 2 October, the last order and two directions to the IO',
+    alt: 'The case page for State v. Aamir Khan: the stage track at prosecution evidence, the next hearing on 5 October, directions to the IO and the custody meter',
   },
   {
-    id: 'sources',
-    label: 'Sources',
-    icon: Quote,
-    tone: 'olive',
-    title: 'Every line opens the words it came from.',
-    description: 'Click a numbered source and the order opens beside the case at the quoted words, with whether they were really found there.',
-    details: ['A number on every fact', 'The order opened at those words', 'Found, or said plainly that it is not'],
-    image: '/art/screens/manu-source.webp',
-    alt: 'The source panel open beside a case, showing the order of 24 September with its full text',
+    id: 'changes',
+    label: 'What changed',
+    icon: Bell,
+    tone: 'terracotta',
+    title: 'What moved overnight, case by case.',
+    description: 'New orders, moved dates, directions found and status changes, each case folded to one line with the kinds of change on it. Open one to read the changes in full.',
+    details: ['One line per case', 'The kinds of change at a glance', 'Each change with its source'],
+    image: '/art/screens/manu-changes.webp',
+    alt: 'Manu’s What changed screen: one folded card per case, with badges for a new order, a direction and a moved date',
   },
   {
-    id: 'liberty',
-    label: 'Liberty',
+    id: 'bail',
+    label: 'Bail',
     icon: Scale,
     tone: 'saffron',
-    title: 'The custody arithmetic that is easy to miss.',
-    description: 'Section 479 BNSS and default bail worked out from the record, with the working one click away. The advocate and the bench read the same page, and it never recommends an outcome.',
-    details: ['Section 479 with the working', 'Default bail, with its date', 'Never a recommendation'],
-    image: '/art/screens/manu-liberty.webp',
-    alt: 'The liberty block for an accused 59 days in custody: below the Section 479 threshold, and default bail accruing on 27 October',
+    title: 'The custody arithmetic, drawn.',
+    description: 'Days in custody against the Section 479 line, default bail with its date, and the facts a bail hearing turns on. The working is one click away, and it never recommends an outcome.',
+    details: ['Custody against the s.479 line', 'Default bail, with its date', 'Facts only, never a recommendation'],
+    image: '/art/screens/manu-bail.webp',
+    alt: 'The Bail tab for Aamir Khan: 361 days in custody, the s.479 threshold in four days, offences and bail facts as tiles',
   },
   {
     id: 'week',
     label: 'This week',
     icon: CalendarDays,
     tone: 'mint',
-    title: 'Seven days of hearings and directions.',
-    description: 'Every hearing and every direction due in the next seven days, day by day, so nothing that was ordered waits for the morning it falls due.',
-    details: ['Hearings, day by day', 'Directions with their due dates', 'Every court you appear in'],
+    title: 'Seven days at a glance.',
+    description: 'A tile for each day with a mark for every hearing, direction due and liberty date. Pick a day to see it in full.',
+    details: ['Hearings, directions and liberty dates', 'Every court you appear in', 'The day you pick, in full'],
     image: '/art/screens/manu-week.webp',
-    alt: 'Manu’s This week screen listing hearings and directions due from Friday 25 September',
-  },
-  {
-    id: 'drafting',
-    label: 'Drafting',
-    icon: FileText,
-    tone: 'blue',
-    title: 'Applications filled from the record. You file them.',
-    description: 'Adjournment and regular bail applications with each paragraph filled from the record, asking for what only you know. Downloaded as .docx; Manu never files anything.',
-    details: ['Each paragraph from the record', 'Asks for what only you know', 'Downloaded as .docx, filed by you'],
-    image: '/art/screens/manu-draft.webp',
-    alt: 'A regular bail application drafted from the record, with the questions only the advocate can answer on the left',
+    alt: 'Manu’s This week screen: seven day tiles with marks for hearings and directions, and today’s five items below',
   },
 ] as const satisfies ReadonlyArray<{
   id: string;

@@ -1,10 +1,9 @@
 import { FileSearch, Landmark, Scale, UsersRound } from 'lucide-react';
 
-import { ButtonLink } from '@/site/components/atoms/ButtonLink';
-import { ManuMark } from '@/site/components/atoms/ManuMark';
 import { SiteFooter } from '@/site/components/organisms/SiteFooter';
 import { SiteHeader } from '@/site/components/organisms/SiteHeader';
-import { APP_CTA, APP_URL, CONTACT_EMAIL } from '@/site/config/site';
+import { WaitlistButton } from '@/site/components/molecules/Waitlist';
+import { CONTACT_EMAIL } from '@/site/config/site';
 import { LabNote } from '@/site/features/about/LabNote';
 import { WorkCorridor } from '@/site/features/about/WorkCorridor';
 
@@ -97,9 +96,9 @@ export function AboutPage() {
         <section className="about-final" aria-labelledby="about-final-title">
           <div className="about-final__rings" aria-hidden="true" />
           <h2 id="about-final-title">Justice should never wait <em>on a date nobody saw.</em></h2>
-          <span className="about-final__mark" aria-hidden="true"><ManuMark /></span>
+          <span className="about-final__mark" aria-hidden="true"><img src="/brand/sankhya-mark.png" alt="" width="44" height="44" /></span>
           <p>Bring a CNR. Tomorrow morning, Manu will have read the court.</p>
-          <ButtonLink href={APP_URL} tone="paper">{APP_CTA}</ButtonLink>
+          <WaitlistButton tone="paper" />
         </section>
       </main>
 

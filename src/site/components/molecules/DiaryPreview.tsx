@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import { ButtonLink } from '@/site/components/atoms/ButtonLink';
-import { APP_CTA, APP_URL } from '@/site/config/site';
+import { WaitlistButton } from '@/site/components/molecules/Waitlist';
 
 /**
  * The first look at the product, under the hero.
@@ -54,7 +53,7 @@ export function DiaryPreview() {
           Manu keeps one diary instead: what is listed today, what changed overnight, and what somebody has to do by
           when, every line pointing back to the order it came from.
         </p>
-        <ButtonLink href={APP_URL}>{APP_CTA}</ButtonLink>
+        <WaitlistButton />
       </header>
 
       <div ref={stageRef} className="course-preview__stage">
