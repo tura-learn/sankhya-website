@@ -21,6 +21,7 @@ export function SiteFooter() {
             <a href="/#product">The diary</a>
             <a href="/#how-it-works">How it works</a>
             <a href="/#screens">Screens</a>
+            <Link to="/manu-s1">Manu-S1 model</Link>
             <button type="button" className="site-footer__link" onClick={openWaitlist}>Join the waitlist</button>
           </div>
           <div className="site-footer__nav">

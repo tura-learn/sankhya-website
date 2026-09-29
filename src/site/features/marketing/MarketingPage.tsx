@@ -9,6 +9,7 @@ import { ProductTour } from '@/site/components/molecules/ProductTour';
 import { SiteFooter } from '@/site/components/organisms/SiteFooter';
 import { SiteHeader } from '@/site/components/organisms/SiteHeader';
 import { WaitlistButton } from '@/site/components/molecules/Waitlist';
+import { S1Band } from '@/site/features/model/S1Band';
 import { useHashScroll } from '@/site/hooks/useHashScroll';
 
 /** The six labels on the cause list, in the words the case page uses. */
@@ -293,6 +294,8 @@ export function MarketingPage() {
             </div>
           </div>
         </section>
+
+        <S1Band />
 
         <section className="about-precepts" id="principles">
           <header className="about-precepts__head">

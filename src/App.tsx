@@ -12,6 +12,7 @@ import '@/site/styles/global.css';
 
 import { AboutPage } from '@/site/features/about/AboutPage';
 import { MarketingPage } from '@/site/features/marketing/MarketingPage';
+import { ModelPage } from '@/site/features/model/ModelPage';
 
 /**
  * Two halves in one deployment.
@@ -29,6 +30,7 @@ const LOCAL_HOSTNAMES = new Set(['localhost', '127.0.0.1', '[::1]']);
 const TITLES: Record<string, string> = {
   '/': 'Manu – Case diary for Indian courts',
   '/about': 'About Manu – Sankhya AI Labs',
+  '/manu-s1': 'Manu-S1 – A fast decision model for Indian court procedure',
 };
 
 function isAccountPath(pathname: string) {
@@ -78,6 +80,7 @@ function App() {
         </Suspense>
       ) : (
         <Routes>
+          <Route path="/manu-s1" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><ModelPage /></ReactLenis>} />
           <Route path="/about" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><AboutPage /></ReactLenis>} />
           <Route path="/" element={<ReactLenis root options={{ lerp: 0.085, smoothWheel: true }}><MarketingPage /></ReactLenis>} />
           {/* The old product and blog pages are gone; their addresses land on the home page. */}
